@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% if form.instance.pk %}
+            Editar evento
+        {% else %}
+            Crear evento
+        {% endif %}
+    </title>
+</head>
+<body>
+
+    <h1>
+        {% if form.instance.pk %}
+            Editar evento
+        {% else %}
+            Crear evento
+        {% endif %}
+    </h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <div>
+            {{ form.nombre.label_tag }}
+            {{ form.nombre }}
+            {{ form.nombre.errors }}
+        </div>
+
+        <div>
+            {{ form.descripcion.label_tag }}
+            {{ form.descripcion }}
+            {{ form.descripcion.errors }}
+        </div>
+
+        <div>
+            {{ form.fecha_inicio.label_tag }}
+            {{ form.fecha_inicio }}
+            {{ form.fecha_inicio.errors }}
+        </div>
+
+        <div>
+            {{ form.fecha_termino.label_tag }}
+            {{ form.fecha_termino }}
+            {{ form.fecha_termino.errors }}
+        </div>
+
+        <button type="submit">
+            Guardar
+        </button>
+    </form>
+
+    <br>
+
+    <a href="{% url 'evento_list' %}">⬅ Volver a eventos</a>
+
+</body>
+</html>

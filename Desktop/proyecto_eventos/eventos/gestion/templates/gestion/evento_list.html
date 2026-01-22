@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+</head>
+<body>
+    <h1>Lista de eventos</h1>
+
+    <a href="{% url 'logout' %}">Cerrar sesión</a>
+
+    <ul>
+        {% for evento in eventos %}
+            <li>
+                <a href="{% url 'evento_detail' evento.pk %}">
+                    {{ evento.nombre }}
+                </a>
+            </li>
+        {% empty %}
+            <li>No hay eventos disponibles</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'evento_create' %}">Crear evento</a>
+</body>
+</html>

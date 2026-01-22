@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar eliminación</title>
+</head>
+<body>
+
+    <h1> Confirmar eliminación</h1>
+
+    <p>
+        ¿Estás seguro que deseas eliminar este
+        <strong>{{ type }}</strong>?
+    </p>
+
+    <p>
+        <strong>{{ object }}</strong>
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" style="background-color: red; color: white;">
+            Sí, eliminar
+        </button>
+    </form>
+
+    <br>
+
+    {% if type == "actividad" %}
+        <a href="{% url 'evento_detail' object.evento.pk %}">
+            Cancelar
+        </a>
+    {% elif type == "tarea" %}
+        <a href="{% url 'evento_detail' object.actividad.evento.pk %}">
+            Cancelar
+        </a>
+    {% else %}
+        <a href="{% url 'evento_list' %}">Cancelar</a>
+    {% endif %}
+
+</body>
+</html>

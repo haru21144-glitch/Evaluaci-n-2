@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva tarea</title>
+</head>
+<body>
+
+<h1>Nueva tarea</h1>
+<p><strong>Evento:</strong> {{ evento.nombre }}</p>
+<p><strong>Actividad:</strong> {{ actividad.nombre }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Guardar tarea</button>
+</form>
+
+<a href="{% url 'evento_detail' evento.pk %}">
+     Volver al evento
+</a>
+
+</body>
+</html>

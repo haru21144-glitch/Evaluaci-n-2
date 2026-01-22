@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ evento.nombre }}</title>
+</head>
+<body>
+
+    <h1>{{ evento.nombre }}</h1>
+
+    <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+    <p><strong>Fecha inicio:</strong> {{ evento.fecha_inicio }}</p>
+    <p><strong>Fecha término:</strong> {{ evento.fecha_termino }}</p>
+
+    <hr>
+
+    <a href="{% url 'evento_edit' evento.pk %}">✏ Editar evento</a> |
+    <a href="{% url 'actividad_create' evento.pk %}"> Nueva actividad</a> |
+    <a href="{% url 'evento_list' %}">⬅ Volver</a>
+
+    <hr>
+
+    <h2>Actividades</h2>
+
+    {% if actividades %}
+        <ul>
+            {% for actividad in actividades %}
+                <li>
+                    <strong>{{ actividad.nombre }}</strong><br>
+                    {{ actividad.descripcion }}<br>
+
+                    <a href="{% url 'actividad_edit' evento.pk actividad.pk %}">
+                        Editar
+                    </a> |
+                    <a href="{% url 'actividad_delete' evento.pk actividad.pk %}">
+                        Eliminar
+                    </a>
+
+                    <br>
+                    <a href="{% url 'tarea_create' evento.pk actividad.pk %}">
+                         Agregar tarea
+                    </a>
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay actividades registradas.</p>
+    {% endif %}
+
+</body>
+</html>
